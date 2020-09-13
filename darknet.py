@@ -92,9 +92,9 @@ def class_colors(names):
     class name
     """
     return {name: (
-        random.randint(0, 255),
-        random.randint(0, 255),
-        random.randint(0, 255)) for name in names}
+        random.randint(0, 0),
+        random.randint(0, 0),
+        random.randint(0, 0)) for name in names}
 
 
 def load_network(config_file, data_file, weights, batch_size=1):
@@ -132,7 +132,7 @@ def draw_boxes(detections, image, colors):
     import cv2
     for label, confidence, bbox in detections:
         left, top, right, bottom = bbox2points(bbox)
-        cv2.rectangle(image, (left, top), (right, bottom), colors[label], 1)
+        cv2.rectangle(image, (left, top), (right, bottom), colors[label], -1)
         cv2.putText(image, "{} [{:.2f}]".format(label, float(confidence)),
                     (left, top - 5), cv2.FONT_HERSHEY_SIMPLEX, 0.5,
                     colors[label], 2)
